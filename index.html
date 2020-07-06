@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
 <body>
   <div class="sec">
     <h1 class="">LIBRARY</h1>
+    <button>Add new book</button>
+    <form action="/">
+      <label for="author">Author:</label>
+      <input type="text" name="author" id="author"><br>
+      <label for="author">Title:</label>
+      <input type="text" name="title" id="title"><br>
+      <label for="author">Pages:</label>
+      <input type="number" name="pages" id="pages"><br>
+      <label for="author">Already read?</label>
+       <input type="checkbox" name="read" id="read"><br>
+       <input type="submit" value="Save">
+    </form>
   </div>
   <section class="sec">
     <div class="book">
