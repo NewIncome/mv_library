@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sec {
+  background-color: bisque;
+  width: 90%;
+  margin: 0 auto 10px;
+  min-height: 20vh;
+  text-align: center;
+}
+
+.book {
+  border: 1px solid #000;
+  height: 200px;
+  width: 100px;
+}
