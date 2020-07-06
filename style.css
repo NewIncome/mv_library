@@ -17,8 +17,12 @@ body {
 
 .book {
   border: 1px solid #000;
-  height: 200px;
-  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 250px;
+  padding: 5px;
+  width: 200px;
 }
 
 .book-sec{
