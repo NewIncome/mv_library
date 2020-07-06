@@ -4,8 +4,11 @@
   box-sizing: border-box;
 }
 
-.sec {
+body {
   background-color: bisque;
+}
+
+.sec {
   width: 90%;
   margin: 0 auto 10px;
   min-height: 20vh;
@@ -16,4 +19,9 @@
   border: 1px solid #000;
   height: 200px;
   width: 100px;
+}
+
+.book-sec{
+  display: flex;
+  justify-content: space-between;
 }
