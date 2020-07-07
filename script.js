@@ -1,5 +1,5 @@
-let myLibrary = [];
-let countId = 1
+const myLibrary = [];
+let countId = 1;
 const bookForm = document.getElementById("bookForm");
 let title = document.getElementById('formTitle');
 let author = document.getElementById('formAuthor');
