@@ -36,4 +36,9 @@ body {
 .book-sec{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.book-container{
+  margin-top: 40px;
 }

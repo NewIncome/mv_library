@@ -43,35 +43,43 @@ function displayDefaultBooks() {
 
 // DOM Manipulation
 function render() {
-  let remove = document.getElementById("bookshelf");
-  while (remove.firstChild) {
-    remove.removeChild(remove.firstChild);
+  let divBookShelf = document.getElementById("bookshelf");
+  while (divBookShelf.firstChild) {
+    divBookShelf.removeChild(divBookShelf.firstChild);
   }
+
   myLibrary.forEach(book => {
-    const div = document.createElement('div'); // to create the book div
-    div.classList.add('book');
+    const bookContainer=document.createElement('div')
+    bookContainer.classList.add('book-container')
+
+    const divBook = document.createElement('div'); // to create the book div
+    divBook.classList.add('book');
 
     const divTitle = document.createElement('h3'); // to create the book title
     divTitle.innerHTML = book.title;
-    div.appendChild(divTitle);
+    divBook.appendChild(divTitle);
 
     const divAuthor = document.createElement('p'); // to create the author
     divAuthor.innerHTML = book.author;
-    div.appendChild(divAuthor);
+    divBook.appendChild(divAuthor);
 
     const divPages = document.createElement('p'); // to create the pages
     divPages.innerHTML = book.numPages + ' pages';
-    div.appendChild(divPages);
+    divBook.appendChild(divPages);
 
     const divRead = document.createElement('p'); // to create the read text
     divRead.innerHTML = book.read ? 'Read' : 'Not read';
-    div.appendChild(divRead);
+    divBook.appendChild(divRead);
 
-    document.getElementById('bookshelf').appendChild(div);
     
     const removeButton=document.createElement('button')
     removeButton.innerHTML='Delete'
-    document.getElementById('bookshelf').appendChild(removeButton);
+    bookContainer.appendChild(divBook);
+    bookContainer.appendChild(removeButton);
+    
+    divBookShelf.appendChild(bookContainer);
+
+
   });
 }
 
