@@ -23,14 +23,18 @@ function addBookToLibrary(title, author, numPages, read = false) {
   return false
 }
 
-function removeBookFromLibrary(book) {
-  let index = myLibrary.findIndex(bookElem => bookElem.id === book.id)
-  if (index == -1)
-    return false
-  else {
+function removeBookFromLibrary(book_id) {
+  let index = myLibrary.findIndex(bookElem => bookElem.id === book_id)
+
+  if (index != -1) {
     myLibrary.splice(index, 1)
-    return true
+    render()
+    // return true
   }
+
+  // return false
+
+
 }
 
 function displayDefaultBooks() {
@@ -49,7 +53,7 @@ function render() {
   }
 
   myLibrary.forEach(book => {
-    const bookContainer=document.createElement('div')
+    const bookContainer = document.createElement('div')
     bookContainer.classList.add('book-container')
 
     const divBook = document.createElement('div'); // to create the book div
@@ -71,12 +75,14 @@ function render() {
     divRead.innerHTML = book.read ? 'Read' : 'Not read';
     divBook.appendChild(divRead);
 
-    
-    const removeButton=document.createElement('button')
-    removeButton.innerHTML='Delete'
+
+    const removeButton = document.createElement('button')
+    removeButton.innerHTML = 'Delete'
+    removeButton.setAttribute("onClick", `removeBookFromLibrary(${book.id})`);
+
     bookContainer.appendChild(divBook);
     bookContainer.appendChild(removeButton);
-    
+
     divBookShelf.appendChild(bookContainer);
 
 
