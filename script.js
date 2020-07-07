@@ -55,12 +55,16 @@ const readBook = (book_id) => {
 
 
 const toggleForm = () => {
-  console.log(bookForm.attributes.class);
-  if (bookForm.attributes.class.value == "hidden") {
-    bookForm.attributes
+  if (bookForm.attributes.class.value === 'hidden')
+  {
+    bookForm.attributes.class.value = 'block';
   }
-  else {
+  else
+  {
+    bookForm.attributes.class.value = 'hidden';
   }
+
+
 }
 
 // DOM Manipulation
