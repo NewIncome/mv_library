@@ -8,6 +8,10 @@ body {
   background-color: bisque;
 }
 
+.hidden{
+  display:none;
+}
+
 .sec {
   width: 90%;
   margin: 0 auto 10px;

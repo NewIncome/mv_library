@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,29 @@
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
+
 <body>
   <div class="sec">
-    <h1 class="">LIBRARY</h1>
+    <h1>LIBRARY</h1>
     <button>Add new book</button>
     <form id="bookForm" class="form">
-      <label for="author">Author:</label>
-      <input type="text" name="author" class="input-txt" id="formAuthor"><br>
-      <label for="author">Title:</label>
+      <label for="formTitle" >Title:</label>
       <input type="text" name="title" class="input-txt" id="formTitle"><br>
-      <label for="author">Pages:</label>
+      <label for="formAuthor">Author:</label>
+      <input type="text" name="author" class="input-txt" id="formAuthor"><br>
+      <label for="formPages">Pages:</label>
       <input type="number" name="pages" class="input-txt" id="formPages"><br>
-      <label for="author">Already read?</label>
+      <label for="formRead">Already read?</label>
       <input type="checkbox" name="read" id="formRead"><br>
       <input type="submit" value="Save">
-    </form>
+    </form><br>
+
   </div>
   <section class="sec book-sec" id="bookshelf">
-
+    <h2 class="hidden">.</h2>
   </section>
 
   <script src="script.js"></script>
 </body>
+
 </html>

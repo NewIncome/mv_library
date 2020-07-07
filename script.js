@@ -1,6 +1,10 @@
 let myLibrary = [];
 let countId = 1
 const bookForm = document.getElementById("bookForm");
+let title = document.getElementById('formTitle');
+let author = document.getElementById('formAuthor');
+let pages = document.getElementById('formPages');
+let read = document.getElementById('formRead');
 
 
 function Book(title, author, numPages, read = false) {
@@ -34,18 +38,15 @@ function displayDefaultBooks() {
   addBookToLibrary('Setting the Family Free', 'Eric D. Goodman', 310);
   addBookToLibrary('Sea of Ink : A Creative Writing Anthology ', 'Niamh King', 248);
   addBookToLibrary('What the Dinosaurs Did Last Night ', 'Refe Tuma and Susan Tuma', 112);
+  render();
 }
-
-//let book= new Book(all elements)
-//if removeBookFromLibrary()
-//remove the book from DOM
 
 // DOM Manipulation
 function render() {
   let remove = document.getElementById("bookshelf");
-  while(remove.firstChild){
-      remove.removeChild(remove.firstChild);
-  } 
+  while (remove.firstChild) {
+    remove.removeChild(remove.firstChild);
+  }
   myLibrary.forEach(book => {
     const div = document.createElement('div'); // to create the book div
     div.classList.add('book');
@@ -59,7 +60,7 @@ function render() {
     div.appendChild(divAuthor);
 
     const divPages = document.createElement('p'); // to create the pages
-    divPages.innerHTML = book.numPages;
+    divPages.innerHTML = book.numPages + ' pages';
     div.appendChild(divPages);
 
     const divRead = document.createElement('p'); // to create the read text
@@ -67,24 +68,27 @@ function render() {
     div.appendChild(divRead);
 
     document.getElementById('bookshelf').appendChild(div);
+    
+    const removeButton=document.createElement('button')
+    removeButton.innerHTML='Delete'
+    document.getElementById('bookshelf').appendChild(removeButton);
   });
 }
 
-function getFormData(e) {
+
+function saveBook(e) {
   e.preventDefault();
-  let title = document.getElementById('formTitle').value;
-  let author = document.getElementById('formAuthor').value;
-  let pages = document.getElementById('formPages').value;
-  let read = document.getElementById('formRead').checked;
-  console.log(title)
-  console.log(author)
-  console.log(pages)
-  console.log(read)
-  addBookToLibrary(title, author, pages, read);
-  console.log(myLibrary)
+  addBookToLibrary(title.value, author.value, pages.value, read.checked);
   render();
+  clearInputs()
 }
 
-bookForm.addEventListener('submit', getFormData);
+const clearInputs = () => {
+  title.value = '';
+  author.value = '';
+  pages.value = '';
+  read.checked = false;
+}
+
+bookForm.addEventListener('submit', saveBook);
 displayDefaultBooks();
-render();
