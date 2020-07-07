@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 const myLibrary = [];
 let countId = 1;
 const bookForm = document.getElementById('bookForm');
@@ -23,58 +25,16 @@ function addBookToLibrary(title, author, numPages, read = false) {
   return false;
 }
 
-function removeBookFromLibrary(bookId) {
-  let index = myLibrary.findIndex(bookElem => bookElem.id === bookId)
-
-  if (index != -1) {
-    myLibrary.splice(index, 1);
-    render()
-    // return true
-  }
-
-  // return false
-
-
-}
-
-function displayDefaultBooks() {
-  addBookToLibrary('National Geographic: The Photographs', 'Leah Bendavid-Val', 336);
-  addBookToLibrary('Setting the Family Free', 'Eric D. Goodman', 310);
-  addBookToLibrary('Sea of Ink : A Creative Writing Anthology ', 'Niamh King', 248);
-  addBookToLibrary('What the Dinosaurs Did Last Night ', 'Refe Tuma and Susan Tuma', 112);
-  render();
-}
-
-
-const readBook = (book_id) => {
-  let found_book = myLibrary.find(bookElem => bookElem.id === book_id)
-  found_book.read = !found_book.read
-  render()
-}
-
-
-
-const toggleForm = () => {
-  if (bookForm.attributes.class.value === 'hidden') {
-    bookForm.attributes.class.value = 'block';
-  }
-  else {
-    bookForm.attributes.class.value = 'hidden';
-  }
-
-
-}
-
 // DOM Manipulation
 function render() {
-  let divBookShelf = document.getElementById("bookshelf");
+  const divBookShelf = document.getElementById('bookshelf');
   while (divBookShelf.firstChild) {
     divBookShelf.removeChild(divBookShelf.firstChild);
   }
 
   myLibrary.forEach(book => {
-    const bookContainer = document.createElement('div')
-    bookContainer.classList.add('book-container')
+    const bookContainer = document.createElement('div');
+    bookContainer.classList.add('book-container');
 
     const divBook = document.createElement('div'); // to create the book div
     divBook.classList.add('book');
@@ -88,7 +48,7 @@ function render() {
     divBook.appendChild(divAuthor);
 
     const divPages = document.createElement('p'); // to create the pages
-    divPages.innerHTML = book.numPages + ' pages';
+    divPages.innerHTML = `${book.numPages} pages`;
     divBook.appendChild(divPages);
 
     const divRead = document.createElement('p'); // to create the read text
@@ -96,22 +56,52 @@ function render() {
     divBook.appendChild(divRead);
 
 
-    const removeButton = document.createElement('button')
-    removeButton.innerHTML = 'Delete'
-    removeButton.setAttribute("onClick", `removeBookFromLibrary(${book.id})`);
+    const removeButton = document.createElement('button');
+    removeButton.innerHTML = 'Delete';
+    removeButton.setAttribute('onClick', `removeBookFromLibrary(${book.id})`);
 
-    const read_button = document.createElement('button')
-    read_button.innerHTML = `Mark as ${book.read ? 'not read' : 'read'}`
-    read_button.setAttribute("onClick", `readBook(${book.id})`);
+    const readButton = document.createElement('button');
+    readButton.innerHTML = `Mark as ${book.read ? 'not read' : 'read'}`;
+    readButton.setAttribute('onClick', `readBook(${book.id})`);
 
     bookContainer.appendChild(divBook);
     bookContainer.appendChild(removeButton);
-    bookContainer.appendChild(read_button);
+    bookContainer.appendChild(readButton);
 
     divBookShelf.appendChild(bookContainer);
-
-
   });
+}
+
+
+function removeBookFromLibrary(bookId) {
+  const index = myLibrary.findIndex(bookElem => bookElem.id === bookId);
+
+  if (index !== -1) {
+    myLibrary.splice(index, 1);
+    render();
+  }
+}
+
+const readBook = (bookId) => {
+  const foundBook = myLibrary.find(bookElem => bookElem.id === bookId);
+  foundBook.read = !foundBook.read;
+  render();
+};
+
+const toggleForm = () => {
+  if (bookForm.attributes.class.value === 'hidden') {
+    bookForm.attributes.class.value = 'block';
+  } else {
+    bookForm.attributes.class.value = 'hidden';
+  }
+};
+
+function displayDefaultBooks() {
+  addBookToLibrary('National Geographic: The Photographs', 'Leah Bendavid-Val', 336);
+  addBookToLibrary('Setting the Family Free', 'Eric D. Goodman', 310);
+  addBookToLibrary('Sea of Ink : A Creative Writing Anthology ', 'Niamh King', 248);
+  addBookToLibrary('What the Dinosaurs Did Last Night ', 'Refe Tuma and Susan Tuma', 112);
+  render();
 }
 
 const clearInputs = () => {
