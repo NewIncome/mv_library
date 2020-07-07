@@ -1,5 +1,7 @@
 let myLibrary = [];
 let countId = 1
+const bookForm = document.getElementById("bookForm");
+
 
 function Book(title, author, numPages, read = false) {
   this.id = countId
@@ -40,6 +42,10 @@ function displayDefaultBooks() {
 
 // DOM Manipulation
 function render() {
+  let remove = document.getElementById("bookshelf");
+  while(remove.firstChild){
+      remove.removeChild(remove.firstChild);
+  } 
   myLibrary.forEach(book => {
     const div = document.createElement('div'); // to create the book div
     div.classList.add('book');
@@ -64,5 +70,21 @@ function render() {
   });
 }
 
+function getFormData(e) {
+  e.preventDefault();
+  let title = document.getElementById('formTitle').value;
+  let author = document.getElementById('formAuthor').value;
+  let pages = document.getElementById('formPages').value;
+  let read = document.getElementById('formRead').checked;
+  console.log(title)
+  console.log(author)
+  console.log(pages)
+  console.log(read)
+  addBookToLibrary(title, author, pages, read);
+  console.log(myLibrary)
+  render();
+}
+
+bookForm.addEventListener('submit', getFormData);
 displayDefaultBooks();
 render();
