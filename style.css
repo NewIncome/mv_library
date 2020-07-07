@@ -19,6 +19,16 @@ body {
   text-align: center;
 }
 
+.my-2 {
+  margin: 10px auto;
+}
+
+.input-txt {
+  height: 30px;
+  margin: 0 auto 5px;
+  width: 280px;
+}
+
 .book {
   background: linear-gradient(#934600,#934600),radial-gradient(#b35803, #a44f01), linear-gradient(#dfdfdf,#dfdfdf),linear-gradient(#dfdfdf,#dfdfdf),linear-gradient(#934600,#934600);
   background-position: 0% 0%, 0% 0%, 9% 4%, 16% 6%, 21% 8%;

@@ -12,17 +12,19 @@
 <body>
   <div class="sec">
     <h1>LIBRARY</h1>
-    <button>Add new book</button>
+    <button class="my-2" onclick="toggleForm()">Add new book</button>
     <form id="bookForm" class="form">
-      <label for="formTitle" >Title:</label>
-      <input type="text" name="title" class="input-txt" id="formTitle"><br>
-      <label for="formAuthor">Author:</label>
-      <input type="text" name="author" class="input-txt" id="formAuthor"><br>
-      <label for="formPages">Pages:</label>
-      <input type="number" name="pages" class="input-txt" id="formPages"><br>
-      <label for="formRead">Already read?</label>
-      <input type="checkbox" name="read" id="formRead"><br>
-      <input type="submit" value="Save">
+      <!-- <label for="formTitle" >Title:</label> -->
+      <input type="text" name="title" class="input-txt" id="formTitle" placeholder="Title" required><br>
+      <!-- <label for="formAuthor">Author:</label> -->
+      <input type="text" name="author" class="input-txt" id="formAuthor" placeholder="Author" required><br>
+      <!-- <label for="formPages">Pages:</label> -->
+      <input type="number" name="pages" class="input-txt" id="formPages" placeholder="Number of pages" required><br>
+      <div class="my-2">
+        <label for="formRead">Already read?</label>
+        <input type="checkbox" name="read" id="formRead" class="">
+      </div>
+      <input type="submit" value="Save" class="input-txt">
     </form><br>
 
   </div>
