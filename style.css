@@ -53,3 +53,7 @@ body {
 .book-container {
   margin-top: 40px;
 }
+
+.remove-button {
+  margin-right: 30px;
+}

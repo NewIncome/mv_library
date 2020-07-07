@@ -57,6 +57,7 @@ function render() {
 
 
     const removeButton = document.createElement('button');
+    removeButton.classList.add('remove-button');
     removeButton.innerHTML = 'Delete';
     removeButton.setAttribute('onClick', `removeBookFromLibrary(${book.id})`);
 
