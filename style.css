@@ -8,8 +8,8 @@ body {
   background-color: bisque;
 }
 
-.hidden{
-  display:none;
+.hidden {
+  display: none;
 }
 
 .sec {
@@ -30,9 +30,9 @@ body {
 }
 
 .book {
-  background: linear-gradient(#934600,#934600),radial-gradient(#b35803, #a44f01), linear-gradient(#dfdfdf,#dfdfdf),linear-gradient(#dfdfdf,#dfdfdf),linear-gradient(#934600,#934600);
+  background: linear-gradient(#934600, #934600), radial-gradient(#b35803, #a44f01), linear-gradient(#dfdfdf, #dfdfdf), linear-gradient(#dfdfdf, #dfdfdf), linear-gradient(#934600, #934600);
   background-position: 0% 0%, 0% 0%, 9% 4%, 16% 6%, 21% 8%;
-  background-size: 5% 90%,90% 90%, 90% 89.5%, 90% 89%, 90% 88.5%;
+  background-size: 5% 90%, 90% 90%, 90% 89.5%, 90% 89%, 90% 88.5%;
   background-repeat: no-repeat;
   border-radius: 3px;
   display: flex;
@@ -43,12 +43,13 @@ body {
   width: 240px;
 }
 
-.book-sec{
+.book-sec {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  color: #dfdfdf;
 }
 
-.book-container{
+.book-container {
   margin-top: 40px;
 }

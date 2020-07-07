@@ -1,33 +1,33 @@
 const myLibrary = [];
 let countId = 1;
-const bookForm = document.getElementById("bookForm");
-let title = document.getElementById('formTitle');
-let author = document.getElementById('formAuthor');
-let pages = document.getElementById('formPages');
-let read = document.getElementById('formRead');
+const bookForm = document.getElementById('bookForm');
+const title = document.getElementById('formTitle');
+const author = document.getElementById('formAuthor');
+const pages = document.getElementById('formPages');
+const read = document.getElementById('formRead');
 
 
 function Book(title, author, numPages, read = false) {
-  this.id = countId
-  this.author = author
-  this.title = title
-  this.numPages = numPages
-  this.read = read
-  countId++
+  this.id = countId;
+  this.author = author;
+  this.title = title;
+  this.numPages = numPages;
+  this.read = read;
+  countId += 1;
 }
 
 function addBookToLibrary(title, author, numPages, read = false) {
-  let book = new Book(title, author, numPages, read);
-  if (myLibrary.push(book)) return true
+  const book = new Book(title, author, numPages, read);
+  if (myLibrary.push(book)) return true;
 
-  return false
+  return false;
 }
 
-function removeBookFromLibrary(book_id) {
-  let index = myLibrary.findIndex(bookElem => bookElem.id === book_id)
+function removeBookFromLibrary(bookId) {
+  let index = myLibrary.findIndex(bookElem => bookElem.id === bookId)
 
   if (index != -1) {
-    myLibrary.splice(index, 1)
+    myLibrary.splice(index, 1);
     render()
     // return true
   }
@@ -55,12 +55,10 @@ const readBook = (book_id) => {
 
 
 const toggleForm = () => {
-  if (bookForm.attributes.class.value === 'hidden')
-  {
+  if (bookForm.attributes.class.value === 'hidden') {
     bookForm.attributes.class.value = 'block';
   }
-  else
-  {
+  else {
     bookForm.attributes.class.value = 'hidden';
   }
 
@@ -116,20 +114,20 @@ function render() {
   });
 }
 
-
-function saveBook(e) {
-  e.preventDefault();
-  addBookToLibrary(title.value, author.value, pages.value, read.checked);
-  render();
-  clearInputs()
-}
-
 const clearInputs = () => {
   title.value = '';
   author.value = '';
   pages.value = '';
   read.checked = false;
+};
+
+function saveBook(e) {
+  e.preventDefault();
+  addBookToLibrary(title.value, author.value, pages.value, read.checked);
+  render();
+  clearInputs();
 }
+
 
 bookForm.addEventListener('submit', saveBook);
 displayDefaultBooks();
