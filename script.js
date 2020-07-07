@@ -33,7 +33,9 @@ function render() {
   }
 
   myLibrary.forEach(book => {
-    const { id, author, title, numPages, read } = book;
+    const {
+      id, author, title, numPages, read,
+    } = book;
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book-container');
 
