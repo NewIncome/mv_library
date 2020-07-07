@@ -33,6 +33,7 @@ function render() {
   }
 
   myLibrary.forEach(book => {
+    const { id, author, title, numPages, read } = book;
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book-container');
 
@@ -40,30 +41,30 @@ function render() {
     divBook.classList.add('book');
 
     const divTitle = document.createElement('h3'); // to create the book title
-    divTitle.innerHTML = book.title;
+    divTitle.innerHTML = title;
     divBook.appendChild(divTitle);
 
     const divAuthor = document.createElement('p'); // to create the author
-    divAuthor.innerHTML = book.author;
+    divAuthor.innerHTML = author;
     divBook.appendChild(divAuthor);
 
     const divPages = document.createElement('p'); // to create the pages
-    divPages.innerHTML = `${book.numPages} pages`;
+    divPages.innerHTML = `${numPages} pages`;
     divBook.appendChild(divPages);
 
     const divRead = document.createElement('p'); // to create the read text
-    divRead.innerHTML = book.read ? 'Read' : 'Not read';
+    divRead.innerHTML = read ? 'Read' : 'Not read';
     divBook.appendChild(divRead);
 
 
     const removeButton = document.createElement('button');
     removeButton.classList.add('remove-button');
     removeButton.innerHTML = 'Delete';
-    removeButton.setAttribute('onClick', `removeBookFromLibrary(${book.id})`);
+    removeButton.setAttribute('onClick', `removeBookFromLibrary(${id})`);
 
     const readButton = document.createElement('button');
-    readButton.innerHTML = `Mark as ${book.read ? 'not read' : 'read'}`;
-    readButton.setAttribute('onClick', `readBook(${book.id})`);
+    readButton.innerHTML = `Mark as ${read ? 'not read' : 'read'}`;
+    readButton.setAttribute('onClick', `readBook(${id})`);
 
     bookContainer.appendChild(divBook);
     bookContainer.appendChild(removeButton);
