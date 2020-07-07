@@ -45,6 +45,13 @@ function displayDefaultBooks() {
   render();
 }
 
+
+const readBook = (book_id) => {
+  let found_book = myLibrary.find(bookElem => bookElem.id === book_id)
+  found_book.read = !found_book.read
+  render()
+}
+
 // DOM Manipulation
 function render() {
   let divBookShelf = document.getElementById("bookshelf");
@@ -80,8 +87,13 @@ function render() {
     removeButton.innerHTML = 'Delete'
     removeButton.setAttribute("onClick", `removeBookFromLibrary(${book.id})`);
 
+    const read_button = document.createElement('button')
+    read_button.innerHTML = `Mark as ${book.read ? 'not read' : 'read'}`
+    read_button.setAttribute("onClick", `readBook(${book.id})`);
+
     bookContainer.appendChild(divBook);
     bookContainer.appendChild(removeButton);
+    bookContainer.appendChild(read_button);
 
     divBookShelf.appendChild(bookContainer);
 
