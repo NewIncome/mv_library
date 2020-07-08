@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="sec">
+    <h1>LIBRARY</h1>
+    <button class="my-2" onclick="toggleForm()">New book</button>
+    <form id="bookForm" class="hidden">
+      <input type="text" name="title" class="input-txt" id="formTitle" placeholder="Title" required><br>
+      <input type="text" name="author" class="input-txt" id="formAuthor" placeholder="Author" required><br>
+      <input type="number" name="pages" class="input-txt" id="formPages" placeholder="Number of pages" required><br>
+      <div class="my-2">
+        <label for="formRead">Already read?</label>
+        <input type="checkbox" name="read" id="formRead" class="">
+      </div>
+      <input type="submit" value="Save" class="input-txt">
+    </form><br>
+
+  </div>
+  <section class="sec book-sec" id="bookshelf">
+    <h2 class="hidden">.</h2>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

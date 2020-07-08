@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: bisque;
+}
+
+.hidden {
+  display: none;
+}
+
+.sec {
+  width: 90%;
+  margin: 0 auto 10px;
+  min-height: 20vh;
+  text-align: center;
+}
+
+.my-2 {
+  margin: 10px auto;
+}
+
+.input-txt {
+  height: 30px;
+  margin: 0 auto 5px;
+  width: 280px;
+}
+
+.book {
+  background: linear-gradient(#934600, #934600), radial-gradient(#b35803, #a44f01), linear-gradient(#dfdfdf, #dfdfdf), linear-gradient(#dfdfdf, #dfdfdf), linear-gradient(#934600, #934600);
+  background-position: 0% 0%, 0% 0%, 9% 4%, 16% 6%, 21% 8%;
+  background-size: 5% 90%, 90% 90%, 90% 89.5%, 90% 89%, 90% 88.5%;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  justify-content: space-around;
+  padding: 5px 25px 25px 10px;
+  width: 240px;
+}
+
+.book-sec {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: #dfdfdf;
+}
+
+.book-container {
+  margin-top: 40px;
+}
+
+.remove-button {
+  margin-right: 30px;
+}
