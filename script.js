@@ -1,127 +1,60 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars, max-classes-per-file */
 
-const myLibrary = [];
-let countId = 1;
-const bookForm = document.getElementById('bookForm');
-const title = document.getElementById('formTitle');
-const author = document.getElementById('formAuthor');
-const pages = document.getElementById('formPages');
-const read = document.getElementById('formRead');
-
-
-function Book(title, author, numPages, read = false) {
-  this.id = countId;
-  this.author = author;
-  this.title = title;
-  this.numPages = numPages;
-  this.read = read;
-  countId += 1;
-}
-
-function addBookToLibrary(title, author, numPages, read = false) {
-  const book = new Book(title, author, numPages, read);
-  if (myLibrary.push(book)) return true;
-
-  return false;
-}
-
-// DOM Manipulation
-function render() {
-  const divBookShelf = document.getElementById('bookshelf');
-  while (divBookShelf.firstChild) {
-    divBookShelf.removeChild(divBookShelf.firstChild);
+// Class to create/have a Library
+class Library {
+  constructor(name) {
+    this.name = name;
+    this.collection = [];
   }
 
-  myLibrary.forEach(book => {
-    const {
-      id, author, title, numPages, read,
-    } = book;
-    const bookContainer = document.createElement('div');
-    bookContainer.classList.add('book-container');
-
-    const divBook = document.createElement('div'); // to create the book div
-    divBook.classList.add('book');
-
-    const divTitle = document.createElement('h3'); // to create the book title
-    divTitle.innerHTML = title;
-    divBook.appendChild(divTitle);
-
-    const divAuthor = document.createElement('p'); // to create the author
-    divAuthor.innerHTML = author;
-    divBook.appendChild(divAuthor);
-
-    const divPages = document.createElement('p'); // to create the pages
-    divPages.innerHTML = `${numPages} pages`;
-    divBook.appendChild(divPages);
-
-    const divRead = document.createElement('p'); // to create the read text
-    divRead.innerHTML = read ? 'Read' : 'Not read';
-    divBook.appendChild(divRead);
-
-
-    const removeButton = document.createElement('button');
-    removeButton.classList.add('remove-button');
-    removeButton.innerHTML = 'Delete';
-    removeButton.setAttribute('onClick', `removeBookFromLibrary(${id})`);
-
-    const readButton = document.createElement('button');
-    readButton.innerHTML = `Mark as ${read ? 'not read' : 'read'}`;
-    readButton.setAttribute('onClick', `readBook(${id})`);
-
-    bookContainer.appendChild(divBook);
-    bookContainer.appendChild(removeButton);
-    bookContainer.appendChild(readButton);
-
-    divBookShelf.appendChild(bookContainer);
-  });
-}
-
-
-function removeBookFromLibrary(bookId) {
-  const index = myLibrary.findIndex(bookElem => bookElem.id === bookId);
-
-  if (index !== -1) {
-    myLibrary.splice(index, 1);
-    render();
+  // Add a book to the Library obj
+  addBookToLibrary(book) {
+    if (this.collection.push(book)) return true;
+    return false;
   }
 }
 
-const readBook = (bookId) => {
-  const foundBook = myLibrary.find(bookElem => bookElem.id === bookId);
-  foundBook.read = !foundBook.read;
-  render();
-};
-
-const toggleForm = () => {
-  if (bookForm.attributes.class.value === 'hidden') {
-    bookForm.attributes.class.value = 'block';
-  } else {
-    bookForm.attributes.class.value = 'hidden';
+// Class to create Books
+class Book {
+  Book.countId = 0;
+  constructor(author, title, numPages, read = false) {
+    this.id = countId;
+    this.author = author;
+    this.title = title;
+    this.numPages = numPages;
+    this.read = read;
+    Book.countId += 1;
   }
-};
 
-function displayDefaultBooks() {
-  addBookToLibrary('National Geographic: The Photographs', 'Leah Bendavid-Val', 336);
-  addBookToLibrary('Setting the Family Free', 'Eric D. Goodman', 310);
-  addBookToLibrary('Sea of Ink : A Creative Writing Anthology ', 'Niamh King', 248);
-  addBookToLibrary('What the Dinosaurs Did Last Night ', 'Refe Tuma and Susan Tuma', 112);
-  render();
+  // function to define if a book is read or not
+  readBook() {
+    this.read = !this.read;
+  }
 }
 
-const clearInputs = () => {
-  title.value = '';
-  author.value = '';
-  pages.value = '';
-  read.checked = false;
-};
+const lib = new Library();
+console.log(lib);
 
-function saveBook(e) {
-  e.preventDefault();
-  addBookToLibrary(title.value, author.value, pages.value, read.checked);
-  render();
-  clearInputs();
-}
+/*
+let lib = new Library();
+*/
 
+// ------------------- DOM -------------------
+// Class to create a DOM element needed for the render() in HTML
+// class Dom {
+//   constructor(name, tag) {
+//     this.name = name;
+//     return document.getElementById(tag);
+//   }
 
-bookForm.addEventListener('submit', saveBook);
-displayDefaultBooks();
+//   // Methods available to these DOM objects
+//   addClass = (className) => {
+//     console.log(className);
+//     // this.classList.add(className);
+//   }
+// };
+// let bookForm = new Dom('book', 'bookForm');
+// console.log();
+
+// let t1 = new Dom('t1', 'bookForm');
+// t1.addClass('testing');
