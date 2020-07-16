@@ -1,29 +1,48 @@
 /* eslint-disable no-unused-vars */
 
-const myLibrary = [];
-let countId = 1;
 const bookForm = document.getElementById('bookForm');
 const title = document.getElementById('formTitle');
 const author = document.getElementById('formAuthor');
 const pages = document.getElementById('formPages');
 const read = document.getElementById('formRead');
 
+class Book {
+  static countId = 0;
+  constructor(title, author, numPages, read = false) {
+    this.id = ++Book.countId;
+    this.title = title;
+    this.author = author;
+    this.numPages = numPages;
+    this.read = read;
+  }
 
-function Book(title, author, numPages, read = false) {
-  this.id = countId;
-  this.author = author;
-  this.title = title;
-  this.numPages = numPages;
-  this.read = read;
-  countId += 1;
+  readBook() {
+    this.read = !this.read;
+  }
 }
 
-function addBookToLibrary(title, author, numPages, read = false) {
-  const book = new Book(title, author, numPages, read);
-  if (myLibrary.push(book)) return true;
+class Library {
+  constructor() {
+    this.books = [];
+  }
 
-  return false;
+  addBookToLibrary = (title, author, numPages, read = false) => {
+    const book = new Book(title, author, numPages, read);
+    if (this.books.push(book)) return true;
+    return false;
+  };
+
+  removeBookFromLibrary = (bookId) => {
+    const index = this.books.findIndex((bookElem) => bookElem.id === bookId);
+
+    if (index !== -1) {
+      this.books.splice(index, 1);
+      render();
+    }
+  };
 }
+
+let myLibrary = new Library();
 
 // DOM Manipulation
 function render() {
@@ -32,10 +51,8 @@ function render() {
     divBookShelf.removeChild(divBookShelf.firstChild);
   }
 
-  myLibrary.forEach(book => {
-    const {
-      id, author, title, numPages, read,
-    } = book;
+  myLibrary.books.forEach((book) => {
+    const { id, author, title, numPages, read } = book;
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book-container');
 
@@ -58,11 +75,13 @@ function render() {
     divRead.innerHTML = read ? 'Read' : 'Not read';
     divBook.appendChild(divRead);
 
-
     const removeButton = document.createElement('button');
     removeButton.classList.add('remove-button');
     removeButton.innerHTML = 'Delete';
-    removeButton.setAttribute('onClick', `removeBookFromLibrary(${id})`);
+    removeButton.setAttribute(
+      'onClick',
+      `myLibrary.removeBookFromLibrary(${id})`
+    );
 
     const readButton = document.createElement('button');
     readButton.innerHTML = `Mark as ${read ? 'not read' : 'read'}`;
@@ -76,19 +95,9 @@ function render() {
   });
 }
 
-
-function removeBookFromLibrary(bookId) {
-  const index = myLibrary.findIndex(bookElem => bookElem.id === bookId);
-
-  if (index !== -1) {
-    myLibrary.splice(index, 1);
-    render();
-  }
-}
-
 const readBook = (bookId) => {
-  const foundBook = myLibrary.find(bookElem => bookElem.id === bookId);
-  foundBook.read = !foundBook.read;
+  const foundBook = myLibrary.books.find((bookElem) => bookElem.id === bookId);
+  foundBook.readBook();
   render();
 };
 
@@ -101,10 +110,22 @@ const toggleForm = () => {
 };
 
 function displayDefaultBooks() {
-  addBookToLibrary('National Geographic: The Photographs', 'Leah Bendavid-Val', 336);
-  addBookToLibrary('Setting the Family Free', 'Eric D. Goodman', 310);
-  addBookToLibrary('Sea of Ink : A Creative Writing Anthology ', 'Niamh King', 248);
-  addBookToLibrary('What the Dinosaurs Did Last Night ', 'Refe Tuma and Susan Tuma', 112);
+  myLibrary.addBookToLibrary(
+    'National Geographic: The Photographs',
+    'Leah Bendavid-Val',
+    336
+  );
+  myLibrary.addBookToLibrary('Setting the Family Free', 'Eric D. Goodman', 310);
+  myLibrary.addBookToLibrary(
+    'Sea of Ink : A Creative Writing Anthology ',
+    'Niamh King',
+    248
+  );
+  myLibrary.addBookToLibrary(
+    'What the Dinosaurs Did Last Night ',
+    'Refe Tuma and Susan Tuma',
+    112
+  );
   render();
 }
 
@@ -117,11 +138,15 @@ const clearInputs = () => {
 
 function saveBook(e) {
   e.preventDefault();
-  addBookToLibrary(title.value, author.value, pages.value, read.checked);
+  myLibrary.addBookToLibrary(
+    title.value,
+    author.value,
+    pages.value,
+    read.checked
+  );
   render();
   clearInputs();
 }
-
 
 bookForm.addEventListener('submit', saveBook);
 displayDefaultBooks();
