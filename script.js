@@ -6,10 +6,25 @@ const author = document.getElementById('formAuthor');
 const pages = document.getElementById('formPages');
 const read = document.getElementById('formRead');
 
+class Id {
+  constructor() {
+    this.id = 1;
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  set id(value) {
+    this._id = value;
+  }
+}
+
+let countId = new Id();
+
 class Book {
-  static countId = 0;
   constructor(title, author, numPages, read = false) {
-    this.id = ++Book.countId;
+    this.id = countId.id++;
     this.title = title;
     this.author = author;
     this.numPages = numPages;
@@ -127,6 +142,7 @@ function displayDefaultBooks() {
     112
   );
   render();
+  console.log(myLibrary.books);
 }
 
 const clearInputs = () => {
