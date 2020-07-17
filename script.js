@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars, max-classes-per-file */
 
+// Global variable
+let bookNum = 1;
+
 // Class to create/have a Library
 class Library {
   constructor(name) {
@@ -16,14 +19,13 @@ class Library {
 
 // Class to create Books
 class Book {
-  Book.countId = 0;
   constructor(author, title, numPages, read = false) {
-    this.id = countId;
+    this.id = bookNum;
     this.author = author;
     this.title = title;
     this.numPages = numPages;
     this.read = read;
-    Book.countId += 1;
+    bookNum += 1;
   }
 
   // function to define if a book is read or not
@@ -32,8 +34,14 @@ class Book {
   }
 }
 
+Book.prototype.varb = 0;
+
 const lib = new Library();
 console.log(lib);
+
+const b1 = new Book('', '', 11);
+const b2 = new Book('', '', 12);
+console.log(b1, b2);
 
 /*
 let lib = new Library();
