@@ -14,7 +14,7 @@ This application allow you to create, delete and mark as read a book
 
 ## Live Demo
 
-[:globe_with_meridians::computer:](https://raw.githack.com/NewIncome/mv_library/feature/library_basic/index.html)
+[:globe_with_meridians::computer:](https://rawcdn.githack.com/NewIncome/mv_library/ddf84720d83898f5b42b5aefa0b68eba37f04018/index.html)
 
 
 ## Getting Started
